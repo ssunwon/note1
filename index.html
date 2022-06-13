@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        //숫자, 문자열, 불린값, null, undefined 기본타입을 제외한 모든 값은 '객체'
+        //자바스크립트에서 객체 = '이름(key):값(value)'형태
+        //기본함수는 프로퍼티를 하나의 값만 가지는 것에 비해, 참조 타입 객체는 여러개의 프로퍼티들을
+        //포함할 수 있으며 , 이러한 프로퍼티는 기본 타입의 값을 포함하거나, 다른 객체를 가리킬 수 있음. 함수 포함도 가능
+        //프로퍼티 = 메서드
+        //리터럴 = 표기법 / 객체 리터럴 = 객체 표기법
+        //객체 리터럴 표기 : 중괄호({})
+        //{}안에 아무것도 적지 않을 경우는 빈 객체가 생성
+    
+        //[object()생성자 함수를 통한 객체 생성]
+        
+        //objext()를 이용해서 foo 빈 객체 생성
+        var foo = new Object();
+
+        //foo 객체 프로퍼티 생성
+        foo.name = 'foo';
+        foo.age = '20';
+        foo.gender = 'male';
+
+        console.log(typeof foo);
+        console.log(foo);
+
+        //[객체 리터럴 방식으로 객체 생성]
+        //객체 리터럴 방식으로 foo 객체 생성
+        var foo = {
+            name : 'foo',
+            age : '20',
+            gender : 'male'
+        };
+
+        console.log(typeof foo);
+        console.log(foo);
+        
+        //[객체의 프로퍼티 접근하기]
+        //객체 리터럴 방식을 통한 foo 객체 생성
+        var foo = {
+            name : 'foo',
+            major : 'computer science'
+        };
+
+        //객체 프로퍼티 읽기
+        console.log(foo.name);//출력값 : foo
+        console.log(foo['name']);//출력값 : foo
+        console.log(foo.nickname);// //출력값 : undeifined(undefined도 타입이자, 값을 나타냄)
+
+        //객체 프로퍼티 갱신
+        foo.major = 'electronics engineering';
+        console.log(foo.major); //출력값 : electronics engineering
+        console.log(foo['major']); //출력값 : electronics engineering
+
+        //객체 프로퍼티 동적 생성
+        foo.age =30;
+        console.log(foo.age);  //출력값 : 30
+
+        //대괄호 표기법만을 사용해야 할 경우
+        foo['full-name'] = 'foo bar';
+        console.log(foo['full-name']); //출력값 : foo bar
+        console.log(foo.full-name); //출력값 : NaN(not a number) : jsp가 연산자로 계산
+        console.log(foo.full); //출력값 : indefined
+        console.log(name);; //출력값 : indefined
+
+        //[for in 문을 통한 객체 프로퍼티 출력]
+        //객체 리터럴을 통한 foo 객체 생성
+        var foo = {
+            name : 'foo',
+            age : '30',
+            major : 'computer science'
+        }
+        //for in 문을 이용한 객체 프로퍼티 출력
+        //(for in문 : 상속된 열거 가능한 모든 속성들을 포함하여 객체에서 문자열로 키가 지정된 모든 열거 가능성에 해대 반복)
+        var prop;
+        for(prop in foo){
+            console.log(prop, foo[prop]);
+        }
+
+        //객체 리터럴를 통한 foo 객체 생성
+        var foo = {
+            name : 'foo',
+            nickname : 'babo'
+        }
+
+        console.log(foo.nickame);
+        delete foo.nickame;
+        console.log(foo.nickname);
+
+        delete foo;
+        console.log(foo.name);
+
+        var objA = {
+            val : 40
+        };
+        var objB = objA;
+
+        console.log(objA.val);
+        console.log(objB.val);
+
+        objB.val = 50;
+        console.log(objA.val);
+        console.log(objB.val);
+
+        //[참조에 의한 함수 호출 방식]
+        //call by value와 call by reference 차이
+        var a =100;//기본 타입
+        var objC = {value : 100};//참조 타입
+
+        function changeArg(num, obj){
+            num = 200;
+            obj.value =200;
+
+            console.log(num);        
+            console.log(obj);
+        }
+
+        changeArg(a, objC);
+
+        console.log(a);
+        console.log(objC);
+        // 값에 의한 호출(call by value):함수를 호출할 때 인자로 기본 타입의 값을 넘길 경우, 호출된 함수의 매개변수로 복사된 값이 전달. 때문에 함수 내부에서 매개변수를 이용해 값을 변경해도, 실제로 호출된 값은 변하지 않음
+        // 참조에 의한 호출(call by reference) : 함수를 호출할 때 참보 타입인 객체를 전달할 경우, 객체의 프로퍼티값이 개겣의 참조값이 그대로 함수 내부로 전달. 때문에 함수 내부에서 참조값을 이용해서 인자로 넘긴 실제 객체의 값을 변경할 수 있음.
+
+        //[프로토타입]
+        //객체 생성 및 출력
+        var foo = {
+            name :'foo',
+            age : '20'
+        };
+
+        console.log(foo.toString());
+        console.dir(foo);
+    </script>
+</body>
+</html>
